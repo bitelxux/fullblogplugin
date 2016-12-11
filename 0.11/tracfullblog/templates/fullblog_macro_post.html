@@ -31,6 +31,19 @@
     </ul>
   </div>
 
+  <!--! https://room1408.tk/trac/ticket/96 -->
+  <div py:def="render_blog_post_list_entry(post)">
+      <li>
+        <a href="${req.href.blog(post.name)}">${post.title}</a>
+        <spam class="metainfo">
+        Posted on ${format_datetime(post.publish_time, '%Y-%m-%d %H:%M')}
+            : author <a href="${req.href.blog('author', post.author)}">${post.author}</a>
+            : categories
+            <a href="${req.href.blog('category', post.categories)}">${post.categories}</a>
+        </spam>
+      </li>
+  </div>
+
   <!--! Directly execute the macro on import if 'execute_blog_macro' is set.
         For this not to throw errors it presumes variables to be called
         already exists in the data dictionary. -->
@@ -39,4 +52,3 @@
   </py:if>
 
 </div>
-
